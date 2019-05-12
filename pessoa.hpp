@@ -3,8 +3,7 @@
 #include"endereco.hpp"
 #include<iostream>
 
-class Pessoa
-{
+class Pessoa{
 public:
     string nome_pessoa;
     int idade_pessoa;

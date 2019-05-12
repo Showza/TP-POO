@@ -28,3 +28,8 @@ int Desempregado::getTempo() const{
 string Desempregado::getSkill() const{
 	return skill;
 }
+
+void imprimePessoa(){
+	cout << "Tempo desempregado: " << getTempo() << endl;
+	cout << "Skill do desempregado: " << getSkill() << endl;
+}

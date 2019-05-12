@@ -29,6 +29,6 @@ void Empresa::setQntFuncionarios(int qntFuncionarios_aux)   {qntFuncionarios = q
 
 void Empresa::imprimeEmpresa(){
     endereco_empresa.imprimeEndereco();
-    cout << "\nNome: " << getNomeEmpresa();
-    cout <<"\n Quantidade de Funcionarios: " <<  getQntFuncionarios();
+    cout << "Nome: " << getNomeEmpresa() << endl;
+    cout <<"Quantidade de Funcionarios: " <<  getQntFuncionarios() << endl;
 } 

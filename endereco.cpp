@@ -33,8 +33,8 @@ void Endereco::setCidade(string cidade_aux)      {cidade = cidade_aux;}
 
 void Endereco::imprimeEndereco()
 {
-    cout << "Rua: " << getRua();
-    cout << "\nBairro: " << getBairro();
-    cout << "\nCidade: " << getCidade();
-    cout << "\nNumero: " << getNumero();
+    cout << "Rua: " << getRua() << endl;
+    cout << "Bairro: " << getBairro() << endl;
+    cout << "Cidade: " << getCidade() << endl;
+    cout << "Numero: " << getNumero() << endl;
 }

@@ -39,8 +39,8 @@ void Pessoa::setIdadePessoa(int idade_aux)
 
 void Pessoa::imprimePessoa()
 {
-    cout << "\nNome da Pessoa: " << getNomePessoa();
-    cout << "\nIdade da Pessoa: " << getIdadePessoa();
+    cout << "\nNome da Pessoa: " << getNomePessoa() << endl;
+    cout << "\nIdade da Pessoa: " << getIdadePessoa() << endl;
     endereco_pessoa.imprimeEndereco();
 }
 
