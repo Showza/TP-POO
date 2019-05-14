@@ -20,6 +20,6 @@ public:
     string getSkill()const;
     void setSkill(string aux_skill);
 
-    void imprimePessoa(); 
+    void imprimeDesempregado(); 
 };
 #endif
