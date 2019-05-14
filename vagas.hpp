@@ -10,10 +10,10 @@ private:
     string skill;
     float horas;
     float remuneracao;
-    Empresa* empresa_vagas;
+    Empresa empresa_vagas;
 public:
         Vagas();
-        Vagas(Endereco* endereco_empresa,string nome_empresa,int qntFuncionarios,
+        Vagas(Endereco endereco_empresa,string nome_empresa,int qntFuncionarios,
             int id_vagas,string skill,float horas,float remuneracao);
         ~Vagas();
 
@@ -26,8 +26,8 @@ public:
         float getRemuneracaoVagas()const;
         void setRemuneracaoVagas(float remuneracao_vagas_aux);
         
-        void setEmpresa(Empresa* empresa_vagas);
-        Empresa* getEmpresa();
+        void setEmpresa(Empresa empresa_vagas);
+        Empresa getEmpresa();
 
         void imprimeVagas();
 };
