@@ -12,19 +12,14 @@ Vagas::Vagas()
     this->skill = "default";
     this->horas = 0.0;
     this->remuneracao = 0.0;
-    this->empresa_vagas = Empresa();
+    this->empresa_vagas = NULL;
 }
-Vagas::Vagas(string rua,string bairro, int numero,string cidade,string nome_empresa,int qntFuncionarios,
+Vagas::Vagas(Endereco* endereco_empresa,string nome_empresa,int qntFuncionarios,
             int id_vagas,string skill,float horas,float remuneracao)
 {
-    empresa_vagas.endereco_empresa.setRua(rua);
-    empresa_vagas.endereco_empresa.setBairro(bairro);
-    empresa_vagas.endereco_empresa.setNumero(numero);
-    empresa_vagas.endereco_empresa.setCidade(cidade);
-    empresa_vagas.setNomeEmpresa(nome_empresa);
-    empresa_vagas.setQntFuncionarios(qntFuncionarios);
-    this->empresa_vagas.qntFuncionarios = qntFuncionarios;
-    this->id_vagas = id_vagas;
+    empresa_vagas->setEndereco(endereco_empresa);
+    empresa_vagas->setNomeEmpresa(nome_empresa);
+    empresa_vagas->setQntFuncionarios(qntFuncionarios);
     this->skill = skill;
     this->horas = horas;
     this->remuneracao = remuneracao;
@@ -66,10 +61,18 @@ void Vagas::setRemuneracaoVagas(float remuneracao_vagas_aux)
 }
 void Vagas::imprimeVagas()
 {
-    empresa_vagas.endereco_empresa.imprimeEndereco();
-    empresa_vagas.imprimeEmpresa();
-    cout << "\nId da vaga: " << getIdVagas();
-    cout << "\nSkill para vaga: " << getSkillVagas();
-    cout << "\nCarga Horaria da Vaga: " << getHorasVagas();
-    cout << "\nRemuneracao da vaga: " << getRemuneracaoVagas();
+    empresa_vagas->imprimeEmpresa();
+    cout << "Id da vaga: " << getIdVagas() << endl;
+    cout << "Skill para vaga: " << getSkillVagas() << endl;
+    cout << "Carga Horaria da Vaga: " << getHorasVagas() << endl;
+    cout << "Remuneracao da vaga: " << getRemuneracaoVagas() << endl;
+}
+
+ void Vagas::setEmpresa(Empresa* empresa_vagas)
+ {
+     this->empresa_vagas = empresa_vagas;
+ }
+Empresa* Vagas::getEmpresa()
+{
+    return empresa_vagas;
 }

@@ -8,12 +8,13 @@
 #include "vagas.hpp"
 #include<stdlib.h>
 #include <fstream>
+#include <vector>
 
 
 using namespace std;
 
 
-void outputline();
+vector<Vagas*> outputline();
 
 int main(){
 
@@ -85,7 +86,7 @@ cout << "------------ TESTE DESEMPREGADO ----------" << endl;
 
     cin.ignore();
     cout << "Digite o nome da Pessoa: ";
-    getline(cin,nome_pessoa);
+    getline(cin,nome_pessoa);3699999
     cout << "Digite a idade da Pessoa: ";
     cin >> idade; 
     cin.ignore();
@@ -110,7 +111,7 @@ cout << "------------ TESTE DESEMPREGADO ----------" << endl;
 
 
 
-void outputline()
+vector<Vagas*> outputline()
 {
 ////////////////
     int id_vagas;
@@ -123,8 +124,12 @@ void outputline()
     string bairro;
     int numero;
     string cidade;
-//////////////////
+    vector<Vagas*> vetor_de_vagas;
 
+//////////////////
+    Vagas* vagas_aux = new Vagas();
+    Empresa* empresa_aux = new Empresa();
+    Endereco* endereco_empresa_aux = new Endereco();
     ifstream arq_vagas("entradaVagas.txt", ios::in);
     while(!arq_vagas.eof()){
         arq_vagas >> id_vagas;
@@ -152,10 +157,39 @@ void outputline()
         cout << " Bairro: " << bairro << endl;
         cout << "NUmero : " << numero << endl;
         cout << "Cidade: " << cidade << endl;
-    }
+        //alocacao de variaveis do objeto
+        endereco_empresa_aux->setBairro(bairro);
+        endereco_empresa_aux->setCidade(cidade);
+        endereco_empresa_aux->setNumero(numero);
+        endereco_empresa_aux->setRua(rua);
+        empresa_aux->setEndereco(endereco_empresa_aux);
+        empresa_aux->setNomeEmpresa(nome_empresa);
+        empresa_aux->setQntFuncionarios(qnt_funcionarios);
+        vagas_aux->setEmpresa(empresa_aux);
+        vagas_aux->setHorasVagas(horas);
+        vagas_aux->setIdVagas(id_vagas);
+        vagas_aux->setRemuneracaoVagas(remuneracao);
+        vagas_aux->setSkillVagas(skill);
 
-   /* Vagas* teste = new Vagas( empresa_vagas.endereco_empresa.rua, empresa_vagas.endereco_empresa.bairro,  empresa_vagas.endereco_empresa.numero,
-     empresa_vagas.endereco_empresa.cidade, empresa_vagas.nome_empresa, empresa_vagas.qntFuncionarios,
-             id_vagas, skill, horas, remuneracao);*/
+        vetor_de_vagas.push_back(vagas_aux);
+    }
+    cout << "COMECOOOOU " << endl;
+    vetor_de_vagas[1]->imprimeVagas();
+    cout << endl;
+    cout << endl;
+    vetor_de_vagas[2]->imprimeVagas();
+    cout << endl;
+    cout << endl;
+    vetor_de_vagas[40]->imprimeVagas();
+    
+    //vetor_de_vagas[3]->imprimeVagas();
+    //cout << endl;
+    //vetor_de_vagas[4]->imprimeVagas();
+    //cout << endl;
+    //vetor_de_vagas[5]->imprimeVagas();
+    //cout << endl;
+    return vetor_de_vagas;
+    
+    
 
 }
