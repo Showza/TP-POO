@@ -6,6 +6,7 @@
 #include "endereco.hpp"
 #include "desempregado.hpp"
 #include "vagas.hpp"
+
 #include<stdlib.h>
 #include <fstream>
 #include <vector>
