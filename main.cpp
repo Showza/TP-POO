@@ -6,6 +6,7 @@
 #include "endereco.hpp"
 #include "desempregado.hpp"
 #include "vagas.hpp"
+
 #include<stdlib.h>
 #include <fstream>
 #include <vector>
@@ -22,7 +23,7 @@ int main(){
     string bairro;
     int numero;
     string cidade;
-    
+
     cout <<"Digite Rua: ";
     getline(cin,rua);
     cout <<"\nDigite Bairro: ";
@@ -105,6 +106,22 @@ cout << "------------ TESTE DESEMPREGADO ----------" << endl;
     float remuneracao;
     char* nome_empresa;
     outputline();
+    
+    /*cin.ignore();
+    cout << "Digite o nome da Pessoa: ";
+    getline(cin,nome_pessoa);
+    cout << "Digite a idade da Pessoa: ";
+    cin >> idade; 
+    cin.ignore();
+    cout << "Skill do desempregado: ";
+    getline(cin,skill);
+    cout << "Tempo desempregado: ";
+    cin >> tempo;   
+
+    *fudido = Desempregado(tempo,skill,idade,nome_pessoa,bairro,cidade,rua,numero);
+    fudido->imprimeDesempregado();*/
+    delete fudido;
+    delete teste;
     return 0;
 }
 
