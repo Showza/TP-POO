@@ -1,36 +1,51 @@
 #include "desempregado.hpp"
 using namespace std;
 
-Desempregado::Desempregado():Pessoa(){
+Desempregado::Desempregado():Pessoa()
+{
 	this->tempo = 0;
-	this->skill = "default";
 }
 
-Desempregado::Desempregado(int tempo, string skill, int idade, string nome, string bairro, string cidade, string rua, int numero):Pessoa(idade, nome, bairro, cidade, rua, numero){
+Desempregado::Desempregado(int tempo, vector<string>  vetor_de_skill, int idade, string nome) : Pessoa(idade,nome)
+{
 	setTempo(tempo);
-	setSkill(skill);
+	setSkill(vetor_de_skill);
 }
 
 Desempregado::~Desempregado(){};
 
-void Desempregado::setTempo(int aux_tempo){
+void Desempregado::setTempo(int aux_tempo)
+{
 	tempo = aux_tempo;
 }
 
-void Desempregado::setSkill(string aux_skill){
-	skill = aux_skill;
+void Desempregado::setSkill(vector<string> aux_skill)
+{
+	vetor_de_skill = aux_skill;
 }
 
-int Desempregado::getTempo() const{
+int Desempregado::getTempo() const
+{
 	return tempo;
 }
 
-string Desempregado::getSkill() const{
-	return skill;
+vector<string> Desempregado::getSkill() const
+{
+	return vetor_de_skill;
 }
 
-void Desempregado::imprimeDesempregado(){
+void Desempregado::imprimeDesempregado()
+{
+	cout << getNomePessoa() << endl;
+	cout << getIdadePessoa() << endl;
+	int tam = vetor_de_skill.size();
+    for(int i=0;i<tam;i++){
+        cout << "Skill para vaga: " << vetor_de_skill[i] << endl;
+    }
 	cout << "\nTempo desempregado: " << getTempo() << endl;
-	cout << "Skill do desempregado: " << getSkill() << endl;
-	imprimePessoa();
+}
+
+int Desempregado::retorna_qnt_skill()
+{
+	return vetor_de_skill.size();
 }

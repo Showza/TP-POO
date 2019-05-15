@@ -60,6 +60,7 @@ void Vagas::setRemuneracaoVagas(float remuneracao_vagas_aux)
 }
 void Vagas::imprimeVagas()
 {
+    cout << endl;
     empresa_vagas.imprimeEmpresa();
     cout << "Id da vaga: " << getIdVagas() << endl;
     int tam = vetor_skill.size();

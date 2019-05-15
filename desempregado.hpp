@@ -4,22 +4,24 @@
 #include "pessoa.hpp"
 #include <iostream>
 #include <cstring>
+#include<vector>
 
 class Desempregado: public Pessoa{
-public:
+private:
 	int tempo;
-	string skill;
+	vector<string> vetor_de_skill;
 
 public:
 	Desempregado();
-    Desempregado(int tempo, string skill, int idade, string nome, string bairro, string cidade, string rua, int numero);
+    Desempregado(int tempo, vector<string> vetor_de_skill, int idade, string nome);
     ~Desempregado();
 
     int getTempo()const;
     void setTempo(int aux_tempo);
-    string getSkill()const;
-    void setSkill(string aux_skill);
+    vector<string> getSkill()const;
+    void setSkill(vector<string> aux_vet_skill);
 
     void imprimeDesempregado(); 
+    int retorna_qnt_skill();
 };
 #endif
