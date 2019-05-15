@@ -5,7 +5,7 @@
 
 class Empresa
 {
-public:
+private:
     string nome_empresa;
     int qntFuncionarios;
     Endereco endereco_empresa;
@@ -18,6 +18,8 @@ public:
     void setNomeEmpresa(string nome_empresa);
     int getQntFuncionarios()const;
     void setQntFuncionarios(int qntFuncionarios);
+    void setEndereco(Endereco endereco_empresa);
+    Endereco getEndereco()const;
     
     void imprimeEmpresa();
 };

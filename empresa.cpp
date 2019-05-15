@@ -6,14 +6,14 @@ Empresa::Empresa()
 {
     this->nome_empresa = "default";
     this->qntFuncionarios = 0;
-    this->endereco_empresa.bairro = "default";
-    this->endereco_empresa.rua = "default";
-    this->endereco_empresa.numero = 0;
-    this->endereco_empresa.cidade = "default";
+    this->endereco_empresa = Endereco();
 }
 Empresa::Empresa(string rua,string bairro, int numero,string cidade,string nome_empresa,int qntFuncionarios)
 {
-    endereco_empresa = Endereco(rua,bairro,numero,cidade);
+    endereco_empresa.setBairro(bairro);
+    endereco_empresa.setCidade(cidade);
+    endereco_empresa.setNumero(numero);
+    endereco_empresa.setRua(rua);
     setQntFuncionarios(qntFuncionarios);
     setNomeEmpresa(nome_empresa);
 }
@@ -31,4 +31,12 @@ void Empresa::imprimeEmpresa(){
     endereco_empresa.imprimeEndereco();
     cout << "Nome: " << getNomeEmpresa() << endl;
     cout <<"Quantidade de Funcionarios: " <<  getQntFuncionarios() << endl;
+}
+void Empresa::setEndereco(Endereco endereco_empresa)
+{
+    this->endereco_empresa = endereco_empresa;
+}
+Endereco Empresa::getEndereco()const
+{
+    return endereco_empresa;
 } 

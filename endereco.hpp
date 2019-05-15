@@ -5,7 +5,7 @@
 using namespace std;
 
 class Endereco{
-public: 
+private: 
     string rua;
     string bairro;
     int numero;
