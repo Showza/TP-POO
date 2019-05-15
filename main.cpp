@@ -16,10 +16,12 @@
 using namespace std;
 
 
+vector<Vagas> vagas_com_Skill(string skill_procurada,vector<Vagas> vetor_de_vagas);
 vector<Vagas> lerVagas();
 
 int main(){
     vector<Vagas> vetor_de_vagas;
+    vector<Vagas> ordenado_por_id;
     int id_vagas;
     char* skill;
     char enter;
@@ -27,7 +29,19 @@ int main(){
     float remuneracao;
     char* nome_empresa;
     vetor_de_vagas = lerVagas();//copia do vetor pra main
-    vetor_de_vagas[1].imprimeVagas();
+    
+    //mostra vagas por skill ordenados pelo id
+    ordenado_por_id = vagas_com_Skill("poledancing",vetor_de_vagas);
+    int tam_ordenado;
+    tam_ordenado = ordenado_por_id.size();
+    for(int i=0;i<tam_ordenado;i++){
+        ordenado_por_id[i].imprimeVagas();
+    }
+    //fim da impressao
+
+
+    
+    //vetor_de_vagas[1].imprimeVagas();
     return 0;
 }
 
@@ -53,7 +67,6 @@ vector<Vagas> lerVagas()
     Vagas vagas_aux = Vagas();
     Empresa empresa_aux = Empresa();
     Endereco endereco_empresa_aux = Endereco();
-    vector<string> lista_skill;
     ifstream arq_vagas("entradaVagas.txt", ios::in);
     while(!arq_vagas.eof()){
         arq_vagas >> id_vagas;
@@ -73,8 +86,9 @@ vector<Vagas> lerVagas()
         int i=0;
         string word;//auxiliar para salvar os skillls separados
 		stringstream str(skill);
+        vector<string> vetor_skill;//tem que ficar aqui pra sempre ir criando uma lista estatica
 		while(str >> word){// separa os Skills
-            lista_skill.push_back(word);
+            vetor_skill.push_back(word);
             i++;
         }
         ////////
@@ -90,23 +104,34 @@ vector<Vagas> lerVagas()
         vagas_aux.setHorasVagas(horas);
         vagas_aux.setIdVagas(id_vagas);
         vagas_aux.setRemuneracaoVagas(remuneracao);
-        vagas_aux.setSkillVagas(skill);
+        vagas_aux.setSkillVagas(vetor_skill);
 
         vetor_de_vagas.push_back(vagas_aux);
     }
-    cout << "TESTEEEEEEEEEEEE " << endl;
-    cout << lista_skill[0] << endl;
-    cout << lista_skill[1] << endl;
     int tam;
     tam = vetor_de_vagas.size();
-    /*for(int i=0;i<tam;i++){
-        cout << "COMECOOOOU " << endl;
-        vetor_de_vagas[i].imprimeVagas();
-        cout << endl;
-    }*/
+        //vetor_de_vagas[80].imprimeVagas();
 
     return vetor_de_vagas;
-    
-    
+}
 
+vector<Vagas> vagas_com_Skill(string skill_procurada,vector<Vagas> vetor_de_vagas)//retorna a vaga com a skill ordenada por id
+{
+    vector<Vagas> retorno;
+    vector<string> skill_aux;
+
+    int tam_vetor_de_vagas = vetor_de_vagas.size();
+    int qnt_skills_por_vaga;
+    for(int i=0;i<tam_vetor_de_vagas;i++)
+    {
+        qnt_skills_por_vaga = vetor_de_vagas[i].retorna_quantidade_skills();//olho a quantidade de skill da primeira pos do vetor ori
+        skill_aux = vetor_de_vagas[i].getSkillVagas();//faco a copia desse vetor de skill pro skill_aux
+        for(int j=0;j<qnt_skills_por_vaga;j++)//um for da quantidade de skill 
+        {
+            if(skill_procurada == skill_aux[j]){//se tiver uma skill igual
+                retorno.push_back(vetor_de_vagas[i]);//aloco no vetor de retorno
+            }
+        }
+    }
+    return retorno;
 }

@@ -9,18 +9,17 @@ Empresa empresa_vagas;
 Vagas::Vagas()
 {
     this->id_vagas = 0;
-    this->skill = "default";
     this->horas = 0.0;
     this->remuneracao = 0.0;
     this->empresa_vagas = Empresa();
 }
 Vagas::Vagas(Endereco endereco_empresa,string nome_empresa,int qntFuncionarios,
-            int id_vagas,string skill,float horas,float remuneracao)
+            int id_vagas,vector<string> vetor_skill,float horas,float remuneracao)
 {
     empresa_vagas.setEndereco(endereco_empresa);
     empresa_vagas.setNomeEmpresa(nome_empresa);
     empresa_vagas.setQntFuncionarios(qntFuncionarios);
-    this->skill = skill;
+    setSkillVagas(vetor_skill);
     this->horas = horas;
     this->remuneracao = remuneracao;
 }
@@ -35,13 +34,13 @@ void Vagas::setIdVagas(int id_vagas_aux)
 {
     id_vagas = id_vagas_aux;
 }
-string Vagas::getSkillVagas()const
+vector<string> Vagas::getSkillVagas()const
 {
-    return skill;
+    return vetor_skill;
 }
-void Vagas::setSkillVagas(string skill_vagas_aux)
+void Vagas::setSkillVagas(vector<string> skill_vagas_aux)
 {
-    skill = skill_vagas_aux;
+    vetor_skill = skill_vagas_aux;
 }
 float Vagas::getHorasVagas()const
 {
@@ -63,7 +62,10 @@ void Vagas::imprimeVagas()
 {
     empresa_vagas.imprimeEmpresa();
     cout << "Id da vaga: " << getIdVagas() << endl;
-    cout << "Skill para vaga: " << getSkillVagas() << endl;
+    int tam = vetor_skill.size();
+    for(int i=0;i<tam;i++){
+        cout << "Skill para vaga: " << vetor_skill[i] << endl;
+    }
     cout << "Carga Horaria da Vaga: " << getHorasVagas() << endl;
     cout << "Remuneracao da vaga: " << getRemuneracaoVagas() << endl;
 }
@@ -75,4 +77,9 @@ void Vagas::imprimeVagas()
 Empresa Vagas::getEmpresa()
 {
     return empresa_vagas;
+}
+
+int Vagas::retorna_quantidade_skills()
+{
+    return vetor_skill.size();
 }
