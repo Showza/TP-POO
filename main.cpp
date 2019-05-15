@@ -10,6 +10,7 @@
 #include<stdlib.h>
 #include <fstream>
 #include <vector>
+#include <sstream> 
 
 
 using namespace std;
@@ -52,6 +53,7 @@ vector<Vagas> lerVagas()
     Vagas vagas_aux = Vagas();
     Empresa empresa_aux = Empresa();
     Endereco endereco_empresa_aux = Endereco();
+    vector<string> lista_skill;
     ifstream arq_vagas("entradaVagas.txt", ios::in);
     while(!arq_vagas.eof()){
         arq_vagas >> id_vagas;
@@ -67,7 +69,15 @@ vector<Vagas> lerVagas()
         arq_vagas >> numero;
         arq_vagas.ignore();
         getline(arq_vagas,cidade);
-        
+        //SEPARANDO SKILL
+        int i=0;
+        string word;//auxiliar para salvar os skillls separados
+		stringstream str(skill);
+		while(str >> word){// separa os Skills
+            lista_skill.push_back(word);
+            i++;
+        }
+        ////////
         //alocacao de variaveis do objeto
         endereco_empresa_aux.setBairro(bairro);
         endereco_empresa_aux.setCidade(cidade);
@@ -84,6 +94,9 @@ vector<Vagas> lerVagas()
 
         vetor_de_vagas.push_back(vagas_aux);
     }
+    cout << "TESTEEEEEEEEEEEE " << endl;
+    cout << lista_skill[0] << endl;
+    cout << lista_skill[1] << endl;
     int tam;
     tam = vetor_de_vagas.size();
     /*for(int i=0;i<tam;i++){
