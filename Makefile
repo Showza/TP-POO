@@ -1,5 +1,5 @@
-all: empresa.o endereco.o pessoa.o vagas.o desempregado.o main.cpp
-	g++ -o main main.cpp empresa.o endereco.o pessoa.o vagas.o desempregado.o
+all: empresa.o endereco.o pessoa.o vagas.o desempregado.o funcoes.o main.cpp
+	g++ -o main main.cpp empresa.o endereco.o pessoa.o vagas.o desempregado.o funcoes.o
 
 empresa.o: empresa.cpp
 	g++ -o empresa.o -c empresa.cpp
@@ -16,6 +16,9 @@ vagas.o: vagas.cpp
 
 desempregado.o: desempregado.cpp
 	g++ -o desempregado.o -c desempregado.cpp
+
+funcoes.o: funcoes.cpp
+	g++ -o funcoes.o -c funcoes.cpp
 
 clean:
 	rm -f *.o
