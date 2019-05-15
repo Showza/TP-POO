@@ -15,13 +15,14 @@
 
 using namespace std;
 
-
+vector<Vagas> retorna_Empresa_e_suas_vagas(string empresa_procurada,vector<Vagas> vetor_de_vagas);
 vector<Vagas> vagas_com_Skill(string skill_procurada,vector<Vagas> vetor_de_vagas);
 vector<Vagas> lerVagas();
 
 int main(){
     vector<Vagas> vetor_de_vagas;
-    vector<Vagas> ordenado_por_id;
+    vector<Vagas> skill_ordenado_por_id;
+    vector<Vagas> empresa_ordenado_por_id;
     int id_vagas;
     char* skill;
     char enter;
@@ -29,16 +30,28 @@ int main(){
     float remuneracao;
     char* nome_empresa;
     vetor_de_vagas = lerVagas();//copia do vetor pra main
-    
-    //mostra vagas por skill ordenados pelo id
-    ordenado_por_id = vagas_com_Skill("poledancing",vetor_de_vagas);
-    int tam_ordenado;
-    tam_ordenado = ordenado_por_id.size();
-    for(int i=0;i<tam_ordenado;i++){
-        ordenado_por_id[i].imprimeVagas();
+    /************************************************************
+    *                    QUESTAO 3                              *
+    *     mostra vagas por skill ordenados pelo id              *
+    *************************************************************/
+    skill_ordenado_por_id = vagas_com_Skill("poledancing",vetor_de_vagas);
+    int tam_skill_ordenado;
+    tam_skill_ordenado = skill_ordenado_por_id.size();
+    for(int i=0;i<tam_skill_ordenado;i++){
+        skill_ordenado_por_id[i].imprimeVagas();
     }
     //fim da impressao
-
+    /************************************************************
+    *                    QUESTAO 7                              *
+    *     mostra vagas referente a empresa ordenadas por id     *
+    *************************************************************/
+    empresa_ordenado_por_id = retorna_Empresa_e_suas_vagas("city beat",vetor_de_vagas);
+    int tam_empres_ordenado = empresa_ordenado_por_id.size();
+    for(int i=0;i<tam_empres_ordenado;i++)
+    {
+        empresa_ordenado_por_id[i].imprimeVagas();
+    }
+    //fim da impressao
 
     
     //vetor_de_vagas[1].imprimeVagas();
@@ -131,6 +144,26 @@ vector<Vagas> vagas_com_Skill(string skill_procurada,vector<Vagas> vetor_de_vaga
             if(skill_procurada == skill_aux[j]){//se tiver uma skill igual
                 retorno.push_back(vetor_de_vagas[i]);//aloco no vetor de retorno
             }
+        }
+    }
+    return retorno;
+}
+
+//7. Dado o nome de uma empresa, exibir todas as vagas referentes a empresa, ordenadas por id.
+
+vector<Vagas> retorna_Empresa_e_suas_vagas(string empresa_procurada,vector<Vagas> vetor_de_vagas)//retorna a vaga com a skill ordenada por id
+{
+    vector<Vagas> retorno;
+    Empresa empresa_aux;
+    string nome_empresa_aux;
+    
+    int tam_vetor_de_vagas = vetor_de_vagas.size();
+    for(int i=0;i<tam_vetor_de_vagas;i++)
+    {
+        empresa_aux = vetor_de_vagas[i].getEmpresa();//faco a copia desse vetor de skill pro skill_aux
+        nome_empresa_aux = empresa_aux.getNomeEmpresa();
+        if(empresa_procurada == empresa_aux.getNomeEmpresa()){//se tiver um nomedeEMpresa igual
+            retorno.push_back(vetor_de_vagas[i]);//aloco no vetor de retorno
         }
     }
     return retorno;
